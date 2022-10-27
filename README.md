@@ -1,0 +1,2 @@
+# Delta_majaplaan
+paaristöö
