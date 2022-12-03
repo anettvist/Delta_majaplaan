@@ -6,7 +6,7 @@ aken = [[sg.Text('Tere', size=(40,1), key='kasutaja_tekst')],
 [sg.Input(key='sisestatud_tekst')],
 [sg.Button('Otsi'), sg.Button('Lõpeta')]]
 
-aken = sg.Window('Vestlus', aknas)
+aken = sg.Window('Vestlus', aken)
 
 while True:
     sündmus, väärtused = aken.read()
