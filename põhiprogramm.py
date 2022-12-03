@@ -1,5 +1,3 @@
-pip install PySimpleGUI
-
 import PySimpleGUI as sg
 
 sg.theme('Default1') #värv
@@ -20,4 +18,5 @@ while True:
         aken['sisestatud_tekst'].update('')
         aken.open('sisestatud_tekst'+'.jpg')
 
+#ja nii ongi
 aken.close()
