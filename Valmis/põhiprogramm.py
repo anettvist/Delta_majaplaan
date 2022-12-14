@@ -63,7 +63,7 @@ while True:
         #Salvestab pildi
         image.save(bio, format='PNG')
         
-        aken['arvuti_tekst'].update(f"Ruum {väärtused['sisestatud_tekst']} asub siin.")
+        aken['arvuti_tekst'].update(f"Ruum {väärtused['sisestatud_tekst'].upper()} asub siin.")
         #aken['pildi_tekst'].update('Järgmise ruumi otsimiseks sisesta ruumi number.')
         aken['pilt'].update(data=bio.getvalue())
         aken['Tagasi'].update(visible = True)
