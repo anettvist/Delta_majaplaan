@@ -49,7 +49,8 @@ while True:
     
     aken['sisestatud_tekst'].update('')
     
-    faili_nimi = str(väärtused['sisestatud_tekst'].upper()) + '.jpg'
+    ruum = str(väärtused['sisestatud_tekst'].upper())
+    faili_nimi = ruum + '.jpg'
     
         
     #Kui soovitakse ruumi otsida ja selline fail eksisteerib
@@ -63,7 +64,11 @@ while True:
         #Salvestab pildi
         image.save(bio, format='PNG')
         
-        aken['arvuti_tekst'].update(f"Ruum {väärtused['sisestatud_tekst'].upper()} asub siin.")
+
+        if ruum.isalpha():
+            aken['arvuti_tekst'].update(f"Kärg {ruum} asub siin.")
+        else:
+            aken['arvuti_tekst'].update(f"Ruum {ruum} asub siin.")
         #aken['pildi_tekst'].update('Järgmise ruumi otsimiseks sisesta ruumi number.')
         aken['pilt'].update(data=bio.getvalue())
         aken['Tagasi'].update(visible = True)
