@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from PIL import Image
 import io, os
 
+#Eesmärk oli saada aken keskele, aga millegi pärast see ei toimi
 def move_center(window):
     screen_width, screen_height = window.get_screen_dimensions()
     win_width, win_height = window.size
@@ -12,6 +13,7 @@ def move_center(window):
 sg.theme('LightGreen10') #värv
 sg.theme_input_text_color('white')
 
+#Kõik akna elemendid
 layout = [
 [sg.Text('Sisesta ruumi number, mida otsid.\nKärgede otsimiseks sisesta kärje täht.\nVetsude otsimiseks sisesta korruse number.', size=(40,4), key='arvuti_tekst')],
 [sg.Image(key='pilt')],
@@ -24,10 +26,10 @@ aken = sg.Window('Majaplaan', layout, margins=(50, 20), keep_on_top=True, no_tit
 while True:
     sündmus, väärtused = aken.read()
     
-    
     if sündmus == sg.WIN_CLOSED or sündmus == 'Lõpeta':
         break
     
+    #Kui vajutatakse 'Tagasi' nuppu, siis kuvatakse esialgne aken
     if sündmus == 'Tagasi':
         aken['arvuti_tekst'].update('Sisesta ruumi number, mida otsid.\n Kärgede otsimiseks sisesta kärje täht.\n Vetsude otsimiseks sisesta korruse number.')
         aken['pilt'].update('')
@@ -44,6 +46,7 @@ while True:
     
     aken['sisestatud_tekst'].update('')
     
+    #Võtab kasutaja sisestatud teksti ja paneb sellest failinime kokku
     ruum = str(väärtused['sisestatud_tekst'].upper())
     faili_nimi = ruum + '.jpg'
     
@@ -59,14 +62,15 @@ while True:
         #Salvestab pildi
         image.save(bio, format='PNG')
         
-
+        #Kui kasutaja sisestas tähe (kärjed)
         if ruum.isalpha():
             aken['arvuti_tekst'].update(f"Kärg {ruum} asub siin.")
+        #Kui kasutaja sisestas korruse
         elif int(ruum) in range(5):
             aken['arvuti_tekst'].update(f"{ruum}. korruse vetsud asuvad siin.")
         else:
             aken['arvuti_tekst'].update(f"Ruum {ruum} asub siin.")
-        #aken['pildi_tekst'].update('Järgmise ruumi otsimiseks sisesta ruumi number.')
+        
         aken['pilt'].update(data=bio.getvalue())
         aken['Tagasi'].update(visible = True)
         aken['Otsi'].update(visible = False)
@@ -77,9 +81,9 @@ while True:
         continue
         
     else:
+        #Kui kasutaja sisestatud ruumi ei leitud
         aken['pilt'].update('')
         aken['arvuti_tekst'].update(f"Sellist ruumi ei leitud.")
-        #aken['pildi_tekst'].update('Proovi uuesti või otsi mõnda teist ruumi.')
         aken['Tagasi'].update(visible = True)
         aken['Otsi'].update(visible = False)
         aken['sisestatud_tekst'].update(visible = False)
