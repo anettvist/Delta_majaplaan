@@ -41,11 +41,6 @@ while True:
         
         continue
 
-#         [sg.Text('Sisesta ruumi number, mida otsid.', size=(30,1), key='arvuti_tekst')],
-#         [sg.Image(key='pilt')],
-#         [sg.Text('', key = 'pildi_tekst')],
-#         [sg.Input(key='sisestatud_tekst')],
-#         [sg.Button('Otsi'), sg.Button('Tagasi', visible = False), sg.Button('Lõpeta')]
     
     aken['sisestatud_tekst'].update('')
     
@@ -67,6 +62,8 @@ while True:
 
         if ruum.isalpha():
             aken['arvuti_tekst'].update(f"Kärg {ruum} asub siin.")
+        elif int(ruum) in range(5):
+            aken['arvuti_tekst'].update(f"{ruum}. korruse vetsud asuvad siin.")
         else:
             aken['arvuti_tekst'].update(f"Ruum {ruum} asub siin.")
         #aken['pildi_tekst'].update('Järgmise ruumi otsimiseks sisesta ruumi number.')
