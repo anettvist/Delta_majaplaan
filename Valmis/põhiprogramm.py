@@ -4,6 +4,7 @@ import io, os
 
 #Eesmärk oli saada aken keskele, aga millegi pärast see ei toimi
 def move_center(window):
+    window.refresh()
     screen_width, screen_height = window.get_screen_dimensions()
     win_width, win_height = window.size
     x, y = (screen_width - win_width)//2, (screen_height - win_height)// 2
@@ -40,6 +41,7 @@ while True:
         aken['Otsi'].update(visible = True)
         aken['Lõpeta'].update(visible = True)
         aken['sisestatud_tekst'].update(visible = True)
+        move_center(aken)
         
         continue
 
